@@ -1,2 +1,4 @@
 *.ign
 *.qcow2
+.vscode/
+
