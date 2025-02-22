@@ -1,0 +1,10 @@
+[Unit]
+Description=daily update containers
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+RandomizedDelaySec=2h
+
+[Install]
+WantedBy=timers.target

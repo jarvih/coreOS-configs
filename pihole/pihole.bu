@@ -1,0 +1,33 @@
+variant: fcos
+version: 1.5.0
+ignition:
+  config:
+    merge:
+      - local: user.ign
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          pihole
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
+systemd:
+  units:
+    - name: container-pihole.service
+      enabled: false
+      contents_local: container-pihole.service
+    - name: container-tailscale.service
+      enabled: false
+      contents_local: container-tailscale.service
+    - name: container-update.service
+      enabled: true
+      contents_local: container-update.service
+    - name: container-update.timer
+      enabled: true
+      contents_local: container-update.timer
