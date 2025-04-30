@@ -29,7 +29,7 @@ ExecStart=/usr/bin/podman run \
 	-e GRAYLOG_DATANODE_NODE_ID_FILE=/var/lib/graylog-datanode/node-id \
 	-e GRAYLOG_DATANODE_PASSWORD_SECRET__FILE=/run/secrets/graylog_password \
 	-e GRAYLOG_DATANODE_MONGODB_URI=mongodb://localhost:27017/graylog \
-	-v graylog-datanode:/var/lib/graylog-datanode docker.io/graylog/graylog-datanode:6.1
+	-v graylog-datanode:/var/lib/graylog-datanode docker.io/graylog/graylog-datanode:6.2
 ExecStop=/usr/bin/podman stop \
 	--ignore -t 10 \
 	--cidfile=%t/%n.ctr-id

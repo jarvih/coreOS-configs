@@ -35,7 +35,7 @@ ExecStart=/usr/bin/podman run \
 	-e GRAYLOG_MONGODB_URI=mongodb://localhost:27017/graylog \
 	-e GRAYLOG_ROOT_TIMEZONE=Europe/Helsinki \
 	-v graylog_data:/usr/share/graylog/data/data \
-	-v graylog_journal:/usr/share/graylog/data/journal docker.io/graylog/graylog:6.1
+	-v graylog_journal:/usr/share/graylog/data/journal docker.io/graylog/graylog:6.2
 ExecStop=/usr/bin/podman stop \
 	--ignore -t 10 \
 	--cidfile=%t/%n.ctr-id
