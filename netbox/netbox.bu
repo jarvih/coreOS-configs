@@ -1,0 +1,40 @@
+variant: fcos
+version: 1.5.0
+ignition:
+  config:
+    merge:
+      - local: user.ign
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      contents:
+        inline: |
+          netbox
+    - path: /etc/profile.d/systemd-pager.sh
+      mode: 0644
+      contents:
+        inline: |
+          # Tell systemd to not use a pager when printing information
+          export SYSTEMD_PAGER=cat
+systemd:
+  units:
+    - name: container-tailscale.service
+      enabled: true
+      contents_local: container-tailscale.service
+    - name: container-update.service
+      enabled: true
+      contents_local: container-update.service
+    - name: container-update.timer
+      enabled: true
+      contents_local: container-update.timer
+    
+    - name: serial-getty@ttyS0.service
+      dropins:
+      - name: autologin-core.conf
+        contents: |
+          [Service]
+          # Override Execstart in main unit
+          ExecStart=
+          # Add new Execstart with `-` prefix to ignore failure`
+          ExecStart=-/usr/sbin/agetty --autologin core --noclear %I $TERM
