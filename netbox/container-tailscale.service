@@ -29,7 +29,7 @@ ExecStart=/usr/bin/podman run \
 	-e TS_HOSTNAME=netbox \
 	-e TS_STATE_DIR=/var/lib/tailscale \
 	-v /dev/net/tun:/dev/net/tun \
-	-v /home/jahe/tailscale:/var/lib/tailscale docker.io/tailscale/tailscale:latest
+	-v /var/lib/tailscale:/var/lib/tailscale docker.io/tailscale/tailscale:latest
 ExecStop=/usr/bin/podman stop \
 	--ignore -t 10 \
 	--cidfile=%t/%n.ctr-id
