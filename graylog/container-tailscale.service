@@ -26,7 +26,7 @@ ExecStart=/usr/bin/podman run \
 	--name tailscale \
 	--network=host \
     --privileged \
-	-e TS_HOSTNAME=graylog \
+	-e TS_HOSTNAME=$HOSTNAME \
 	-e TS_STATE_DIR=/var/lib/tailscale \
 	-v /dev/net/tun:/dev/net/tun \
 	-v /var/lib/tailscale:/var/lib/tailscale docker.io/tailscale/tailscale:latest
